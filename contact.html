@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WanderWorld – Contact Us</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary: #0a6e8a;
+      --accent:  #f4a623;
+      --dark:    #0d1b2a;
+      --light:   #f5f9fc;
+      --card-bg: #ffffff;
+      --radius:  12px;
+      --shadow:  0 4px 20px rgba(0,0,0,.12);
+    }
+    body { font-family: 'Segoe UI', sans-serif; background: var(--light); color: var(--dark); }
+    a { text-decoration: none; color: inherit; }
+
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 999;
+      background: rgba(10,110,138,.95); backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .9rem 2rem; gap: 1rem;
+    }
+    .nav-brand { display: flex; align-items: center; gap: .6rem; }
+    .nav-brand svg { width: 32px; height: 32px; fill: var(--accent); }
+    .nav-brand span { font-size: 1.4rem; font-weight: 700; color: #fff; letter-spacing: .5px; }
+    .nav-links { display: flex; gap: 1.8rem; }
+    .nav-links a { color: #ffffffcc; font-weight: 500; font-size: .95rem; transition: color .2s; }
+    .nav-links a:hover { color: var(--accent); }
+
+    #contact { padding: 7rem 2rem 4rem; max-width: 620px; margin: 0 auto; }
+    #contact h1 { font-size: 2rem; color: var(--primary); margin-bottom: .4rem; }
+    #contact .subtitle { color: #666; margin-bottom: 2rem; }
+    .contact-form {
+      background: var(--card-bg); border-radius: var(--radius);
+      padding: 2.2rem; box-shadow: var(--shadow);
+    }
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label { display: block; font-size: .88rem; font-weight: 600; color: var(--dark); margin-bottom: .4rem; }
+    .form-group input,
+    .form-group textarea {
+      width: 100%; padding: .7rem 1rem; border: 1.5px solid #dde3ea;
+      border-radius: 8px; font-size: .92rem; font-family: inherit;
+      transition: border-color .2s; outline: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: var(--primary); }
+    .form-group textarea { resize: vertical; min-height: 130px; }
+    .btn-submit {
+      width: 100%; padding: .8rem; background: var(--primary); color: #fff;
+      border: none; border-radius: 8px; font-size: 1rem; font-weight: 700;
+      cursor: pointer; transition: background .2s;
+    }
+    .btn-submit:hover { background: #085570; }
+    .form-success {
+      display: none; text-align: center; color: #2e7d32;
+      font-weight: 600; margin-top: 1rem;
+    }
+
+    footer {
+      text-align: center; padding: 1.5rem;
+      background: var(--dark); color: #ffffff66; font-size: .82rem;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-brand">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+      </svg>
+      <span>WanderWorld</span>
+    </div>
+    <div class="nav-links">
+      <a href="travel_recommendation.html">Home</a>
+      <a href="about_us.html">About Us</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+  </nav>
+
+  <section id="contact">
+    <h1>Contact Us</h1>
+    <p class="subtitle">We'd love to hear from you — reach out anytime!</p>
+
+    <div class="contact-form">
+      <form onsubmit="submitForm(event)">
+        <div class="form-group">
+          <label for="c-name">Full Name</label>
+          <input type="text" id="c-name" placeholder="Your name" required />
+        </div>
+        <div class="form-group">
+          <label for="c-email">Email Address</label>
+          <input type="email" id="c-email" placeholder="your@email.com" required />
+        </div>
+        <div class="form-group">
+          <label for="c-msg">Message</label>
+          <textarea id="c-msg" placeholder="Write your message here…" required></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Send Message ✈</button>
+        <p class="form-success" id="form-success">✅ Message sent! We'll get back to you soon.</p>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 WanderWorld. All rights reserved. | Made with ❤ for explorers everywhere.</p>
+  </footer>
+
+  <script>
+    function submitForm(e) {
+      e.preventDefault();
+      document.getElementById('form-success').style.display = 'block';
+      e.target.reset();
+    }
+  </script>
+
+</body>
+</html>

@@ -1,15 +1,3 @@
-// ── Page Navigation ──────────────────────────────────────────────
-function showPage(id) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-
-  // Show/hide search bar: only on home page
-  const searchBar = document.getElementById('nav-search');
-  searchBar.style.display = (id === 'home') ? 'flex' : 'none';
-
-  if (id !== 'home') clearResults();
-}
-
 // ── Contact Form ──────────────────────────────────────────────────
 function submitForm(e) {
   e.preventDefault();
@@ -42,8 +30,12 @@ function handleSearch() {
   } else if (keyword === 'temple' || keyword === 'temples') {
     results = travelData.temples;
     title = '🛕 Temple Recommendations';
+  } else if (keyword === 'country' || keyword === 'countries') {
+    travelData.countries.forEach(c => {
+      results = results.concat(c.cities);
+    });
+    title = '🌍 All Cities';
   } else {
-    // Country keyword: match any country name
     const matched = travelData.countries.find(c =>
       c.name.toLowerCase().includes(keyword)
     );
@@ -62,7 +54,7 @@ function handleSearch() {
 // ── Render Results ────────────────────────────────────────────────
 function renderResults(items, title) {
   const section = document.getElementById('results-section');
-  const grid    = document.getElementById('results-grid');
+  const grid = document.getElementById('results-grid');
   const heading = document.getElementById('results-title');
 
   heading.textContent = title;
@@ -81,7 +73,8 @@ function renderResults(items, title) {
           <h3>${item.name}</h3>
           <p>${item.description}</p>
           <p class="card-time">🕐 Local time: ${time}</p>
-        </div>`;
+        </div>
+      `;
       grid.appendChild(card);
     });
   }
@@ -97,16 +90,10 @@ function clearResults() {
   document.getElementById('results-grid').innerHTML = '';
 }
 
-// ── Task 10: Local Time ───────────────────────────────────────────
+// ── Local Time ───────────────────────────────────────────────────
 function getLocalTime(timeZone) {
   try {
-    const options = {
-      timeZone,
-      hour12: true,
-      hour: 'numeric',
-      minute: 'numeric',
-      second: 'numeric'
-    };
+    const options = { timeZone, hour12: true, hour: 'numeric', minute: 'numeric', second: 'numeric' };
     return new Date().toLocaleTimeString('en-US', options);
   } catch {
     return 'N/A';
